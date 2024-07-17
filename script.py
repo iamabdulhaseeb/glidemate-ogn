@@ -37,6 +37,7 @@ def get_data():
     with lock:
         filtered_messages = [msg for msg in messages if 'latitude' in msg and 'longitude' in msg]
         if filtered_messages:
+            print('Sending Data')
             return jsonify(filtered_messages[-num_messages:])  # Return the last 'num_messages' filtered messages
         else:
             return jsonify({"error": "No data available"}), 204
@@ -51,4 +52,4 @@ if __name__ == "__main__":
     ogn_thread.start()
 
     # Run the Flask app on a specific IP address
-    app.run(host='192.168.100.9', port=5000)
+    app.run(host='localhost', port=5000)
